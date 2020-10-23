@@ -1,0 +1,21 @@
+use bd_aula;
+CREATE DATABASE Users;
+create table companhiaaerea(
+idCompanhia int not null auto_increment,
+nomeCompanhia varchar(45),
+primary key (idCompanhia) 
+);
+
+insert into companhiaaerea (nomeCompanhia) values ('Azul');
+insert into companhiaaerea (nomeCompanhia) values (' GOL');
+insert into companhiaaerea (nomeCompanhia) values (' CVC');
+
+select * from companhiaaerea;
+
+select * from aviao;
+
+alter table aviao 
+add idCompanhia2 int,
+add constraint chave_com_avi foreign key (idCompanhia2) references companhiaaerea (idCompanhia);
+
+select * from aviao;
