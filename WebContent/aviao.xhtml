@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head></h:head>
+<h:body>
+	<h:form>
+		<fieldset>
+			<LEGEND>NOVO AVIÃO</LEGEND>
+			<h:panelGrid columns="2">
+
+				<h:outputText value="Marca" for="idMarca" />
+				<h:inputText id="idMarca" value="#{aviaoController.aviao.marca}" />
+
+				<h:outputText value="Modelo" for="idModelo" />
+				<h:inputText id="idModelo" value="#{aviaoController.aviao.modelo}" />
+
+				<h:outputText value="Ano de Fabricação" for="idAno" />
+				<h:inputText id="idAno"
+					value="#{aviaoController.aviao.anodefabricacao}" />
+
+				<h:outputText value="Capacidade" for="idCapacidade" />
+				<h:inputText id="idCapacidade"
+					value="#{aviaoController.aviao.capacidade}" />
+
+				<h:outputText value="Cor" for="idCor" />
+				<h:inputText id="idCor" value="#{aviaoController.aviao.cor}" />
+				<h:outputText value="Companhia" for="com" />
+				<h:selectOneMenu id="com" value="#{aviaoController.idCompanhia}">
+					<f:selectItem itemLabel="Selecionar" noSelectionOption="true" />
+					<f:selectItems value="#{aviaoController.todosTipos}" var="comp"
+						itemLabel="#{comp.nome}" itemValue="#{comp.id}" />
+
+				</h:selectOneMenu>
+
+				<h:commandButton value="adicionar"
+					action="#{aviaoController.adicionar}" />
+			</h:panelGrid>
+		</fieldset>
+	</h:form>
+
+	<h:form>
+		<h:dataTable value="#{aviaoController.todosAviao}" var="avi">
+
+			<h:column>
+				<f:facet name="header">marca</f:facet>
+				<h:outputText value="#{avi.marca}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">modelo</f:facet>
+				<h:outputText value="#{avi.modelo}" />
+
+			</h:column>
+			<h:column>
+				<f:facet name="header">alterar</f:facet>
+				<h:commandLink value="alterar" action="#{aviaoController.carregar(avi)}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">remover</f:facet>
+				<h:commandLink value="remover" action="#{aviaoController.remover(avi)}" />
+			</h:column>
+		</h:dataTable>
+	</h:form>
+
+</h:body>
+
+
+
+</html>
